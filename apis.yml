@@ -1,6 +1,7 @@
 aid: grapes-knowledge-base
 name: 'Grapes Knowledge Base '
-description: 'Grapes DocumentationDiscover the Grapes knowledge base '
+description: >-
+  Grapes DocumentationDiscover the Grapes knowledge base.
 type: Index
 position: Consumer
 access: 3rd-Party
@@ -15,7 +16,8 @@ specificationVersion: '0.19'
 apis:
   - aid: grapes-knowledge-base:grapes-knowledge-base
     name: 'Grapes Knowledge Base '
-    description: 'Grapes DocumentationDiscover the Grapes knowledge base '
+    description: >-
+      Grapes DocumentationDiscover the Grapes knowledge base.
     humanURL: ' https://docs.data-grapes.com/en/'
     tags:
       - API
