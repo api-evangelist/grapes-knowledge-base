@@ -1,0 +1,24 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "grapes": "https://raw.githubusercontent.com/api-evangelist/grapes-knowledge-base/refs/heads/main/json-ld/grapes-knowledge-base-context.jsonld#",
+    "Project": "schema:Project",
+    "Agent": "grapes:Agent",
+    "Dataset": "schema:Dataset",
+    "id": "@id",
+    "name": "schema:name",
+    "description": "schema:description",
+    "createdAt": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "modifiedAt": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+    "format": "grapes:format",
+    "configuration": "grapes:configuration",
+    "_links": "grapes:links",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  }
+}

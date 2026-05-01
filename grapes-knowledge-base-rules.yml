@@ -1,0 +1,37 @@
+aid: grapes-knowledge-base
+name: Grapes Knowledge Base Rules
+description: >-
+  Operational rules and conventions governing automation against the Grapes
+  knowledge management platform via the Grapes API.
+rules:
+  - id: hateoas
+    name: HATEOAS Link Following
+    description: >-
+      Clients should discover related resources by following _links provided in
+      response payloads rather than constructing URIs manually. This makes
+      integrations resilient to URI structure changes.
+  - id: authentication
+    name: Bearer Token Authentication
+    description: >-
+      API requests authenticate using bearer tokens. Tokens scope access to a
+      Grapes instance and a defined set of permissions.
+  - id: automation-scope
+    name: Automation of Recurring Operations
+    description: >-
+      The API is intended for automating recurring operations such as project
+      creation, agent configuration, and dataset import/export. Interactive
+      one-off tasks should use the web UI.
+  - id: dataset-formats
+    name: Dataset Import and Export Formats
+    description: >-
+      Datasets should be imported and exported in supported formats (JSON, CSV,
+      XML). Schema validation should occur before import to avoid partial loads.
+  - id: instance-isolation
+    name: Instance Isolation
+    description: >-
+      Each Grapes deployment is an isolated tenant. API integrations must use
+      the correct base URL for the target instance.
+maintainer:
+  name: Kin Lane
+  email: kin@apievangelist.com
+modified: '2026-04-28'
