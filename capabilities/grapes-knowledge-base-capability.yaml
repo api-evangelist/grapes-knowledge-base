@@ -1,0 +1,309 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Grapes Knowledge Base API
+  description: The Grapes API allows you to automate recurring operations on the Grapes knowledge management platform, including
+    project administration, agent configuration, and dataset import/export. The API follows HATEOAS principles for link management
+    between resources.
+  tags:
+  - Grapes
+  - Knowledge
+  - Base
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: grapes-knowledge-base
+    baseUri: https://api.data-grapes.com
+    description: Grapes Knowledge Base API HTTP API.
+    authentication:
+      type: bearer
+      token: '{{GRAPES_KNOWLEDGE_BASE_TOKEN}}'
+    resources:
+    - name: projects
+      path: /projects
+      operations:
+      - name: get-projects
+        method: GET
+        description: List projects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post-projects
+        method: POST
+        description: Create project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: projects-projectid
+      path: /projects/{projectId}
+      operations:
+      - name: get-projects-projectid
+        method: GET
+        description: Get project
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: agents
+      path: /agents
+      operations:
+      - name: get-agents
+        method: GET
+        description: List agents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post-agents
+        method: POST
+        description: Create agent
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: datasets
+      path: /datasets
+      operations:
+      - name: get-datasets
+        method: GET
+        description: List datasets
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: datasets-datasetid-export
+      path: /datasets/{datasetId}/export
+      operations:
+      - name: get-datasets-datasetid-export
+        method: GET
+        description: Export dataset
+        inputParameters:
+        - name: datasetId
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: datasets-import
+      path: /datasets/import
+      operations:
+      - name: post-datasets-import
+        method: POST
+        description: Import dataset
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: grapes-knowledge-base-rest
+    description: REST adapter for Grapes Knowledge Base API.
+    resources:
+    - path: /projects
+      name: get-projects
+      operations:
+      - method: GET
+        name: get-projects
+        description: List projects
+        call: grapes-knowledge-base.get-projects
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /projects
+      name: post-projects
+      operations:
+      - method: POST
+        name: post-projects
+        description: Create project
+        call: grapes-knowledge-base.post-projects
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /projects/{projectId}
+      name: get-projects-projectid
+      operations:
+      - method: GET
+        name: get-projects-projectid
+        description: Get project
+        call: grapes-knowledge-base.get-projects-projectid
+        with:
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /agents
+      name: get-agents
+      operations:
+      - method: GET
+        name: get-agents
+        description: List agents
+        call: grapes-knowledge-base.get-agents
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /agents
+      name: post-agents
+      operations:
+      - method: POST
+        name: post-agents
+        description: Create agent
+        call: grapes-knowledge-base.post-agents
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /datasets
+      name: get-datasets
+      operations:
+      - method: GET
+        name: get-datasets
+        description: List datasets
+        call: grapes-knowledge-base.get-datasets
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /datasets/{datasetId}/export
+      name: get-datasets-datasetid-export
+      operations:
+      - method: GET
+        name: get-datasets-datasetid-export
+        description: Export dataset
+        call: grapes-knowledge-base.get-datasets-datasetid-export
+        with:
+          datasetId: rest.datasetId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /datasets/import
+      name: post-datasets-import
+      operations:
+      - method: POST
+        name: post-datasets-import
+        description: Import dataset
+        call: grapes-knowledge-base.post-datasets-import
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: grapes-knowledge-base-mcp
+    transport: http
+    description: MCP adapter for Grapes Knowledge Base API for AI agent use.
+    tools:
+    - name: get-projects
+      description: List projects
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: grapes-knowledge-base.get-projects
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: post-projects
+      description: Create project
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: grapes-knowledge-base.post-projects
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-projects-projectid
+      description: Get project
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: grapes-knowledge-base.get-projects-projectid
+      with:
+        projectId: tools.projectId
+      inputParameters:
+      - name: projectId
+        type: string
+        description: projectId
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-agents
+      description: List agents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: grapes-knowledge-base.get-agents
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: post-agents
+      description: Create agent
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: grapes-knowledge-base.post-agents
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-datasets
+      description: List datasets
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: grapes-knowledge-base.get-datasets
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-datasets-datasetid-export
+      description: Export dataset
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: grapes-knowledge-base.get-datasets-datasetid-export
+      with:
+        datasetId: tools.datasetId
+      inputParameters:
+      - name: datasetId
+        type: string
+        description: datasetId
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: post-datasets-import
+      description: Import dataset
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: grapes-knowledge-base.post-datasets-import
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    GRAPES_KNOWLEDGE_BASE_TOKEN: GRAPES_KNOWLEDGE_BASE_TOKEN
