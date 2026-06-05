@@ -2,7 +2,7 @@
 
 Grapes is a knowledge management platform with administrative, configuration, and project management capabilities. The Grapes API allows automation of recurring operations including project administration, agent configuration, and dataset import/export. Documentation is available in English and French.
 
-**APIs.yml:** [Visit APIs.yml URL](https://raw.githubusercontent.com/api-evangelist/grapes-knowledge-base/refs/heads/main/apis.yml)
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/grapes-knowledge-base/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/grapes-knowledge-base/refs/heads/main/apis.yml)
 
 ## Scope
 
@@ -12,12 +12,16 @@ Grapes is a knowledge management platform with administrative, configuration, an
 
 ## Tags
 
-Knowledge Management, Knowledge Base, Data Management, Automation, HATEOAS
+- Knowledge Management
+- Knowledge Base
+- Data Management
+- Automation
+- HATEOAS
 
 ## Timestamps
 
 - **Created:** 2025-02-24
-- **Modified:** 2026-04-28
+- **Modified:** 2026-05-19
 
 ## APIs
 
@@ -27,25 +31,31 @@ The Grapes API allows you to automate recurring operations on the Grapes knowled
 
 - **Human URL:** [https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/](https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/)
 
-**Tags:** Knowledge Management, Automation, HATEOAS
+#### Tags
 
-**Properties**
+- Knowledge Management
+- Automation
+- HATEOAS
+
+#### Properties
 
 - [Documentation](https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/)
 - [Security](https://docs.data-grapes.com/en/docs/developer-docs/api/api-security/)
-- [OpenAPI](openapi/grapes-knowledge-base-openapi.yml)
+- [OpenAPI](openapi/grapes-knowledge-base-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/grapes-knowledge-base.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/grapes-knowledge-base.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ## Common Properties
 
 - [Documentation](https://docs.data-grapes.com/en/)
 - [Developer Docs](https://docs.data-grapes.com/en/docs/developer-docs/)
 - [User Guide](https://docs.data-grapes.com/en/docs/user-guide/)
-- [OpenAPI](openapi/grapes-knowledge-base-openapi.yml)
-- [JSON Schema](json-schema/grapes-knowledge-base-project-schema.json)
-- [JSON-LD Context](json-ld/grapes-knowledge-base-context.jsonld)
+- [OpenAPI](openapi/grapes-knowledge-base-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [JSON Schema](json-schema/grapes-knowledge-base-project-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [J S O N L D Context](json-ld/grapes-knowledge-base-context.jsonld)
 - [Rules](grapes-knowledge-base-rules.yml)
 
 ## Maintainers
 
-- **FN:** Kin Lane
-- **Email:** kin@apievangelist.com
+**FN:** Kin Lane
+**Email:** kin@apievangelist.com
