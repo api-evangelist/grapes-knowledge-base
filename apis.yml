@@ -38,6 +38,10 @@ apis:
       - type: OpenAPI
         url: openapi/grapes-knowledge-base-openapi.yml
 common:
+  - type: DomainSecurity
+    url: security/grapes-knowledge-base-domain-security.yml
+  - type: Authentication
+    url: authentication/grapes-knowledge-base-authentication.yml
   - type: Documentation
     url: https://docs.data-grapes.com/en/
   - type: DeveloperDocs
@@ -52,6 +56,8 @@ common:
     url: json-ld/grapes-knowledge-base-context.jsonld
   - type: Rules
     url: grapes-knowledge-base-rules.yml
+  - url: https://data-grapes.com/articles/
+    type: Blog
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
