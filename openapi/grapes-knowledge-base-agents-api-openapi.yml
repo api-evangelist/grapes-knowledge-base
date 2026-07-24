@@ -1,0 +1,66 @@
+openapi: 3.1.0
+info:
+  title: Grapes Knowledge Base Agents API
+  description: The Grapes API allows you to automate recurring operations on the Grapes knowledge management platform, including project administration, agent configuration, and dataset import/export. The API follows HATEOAS principles for link management between resources.
+  version: 1.0.0
+  contact:
+    name: Grapes Support
+    url: https://docs.data-grapes.com/en/
+servers:
+- url: https://api.data-grapes.com
+  description: Grapes Production API (placeholder; see official docs)
+security:
+- BearerAuth: []
+tags:
+- name: Agents
+  description: Configure Grapes agents
+paths:
+  /agents:
+    get:
+      tags:
+      - Agents
+      summary: List agents
+      responses:
+        '200':
+          description: A list of agents
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Agent'
+    post:
+      tags:
+      - Agents
+      summary: Create agent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Agent'
+      responses:
+        '201':
+          description: Agent created
+components:
+  schemas:
+    Agent:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        configuration:
+          type: object
+        projectId:
+          type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+externalDocs:
+  description: Grapes API Reference
+  url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
