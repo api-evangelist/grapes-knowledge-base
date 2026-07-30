@@ -5,9 +5,22 @@ description: >-
   Grapes API allows automation of recurring operations including project administration, agent configuration, and
   dataset import/export. Documentation is available in English and French.
 type: Index
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/grapes-knowledge-base.png
 tags:
   - Knowledge Management
   - Knowledge Base
@@ -19,24 +32,45 @@ modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/grapes-knowledge-base/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
-  - aid: grapes-knowledge-base:grapes-api
-    name: Grapes API
-    description: >-
-      The Grapes API allows you to automate recurring operations on the Grapes knowledge management platform, including
-      project administration, agent configuration, and dataset import/export. The API follows HATEOAS principles for
-      link management between resources.
-    humanURL: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
-    tags:
-      - Knowledge Management
-      - Automation
-      - HATEOAS
-    properties:
-      - type: Documentation
-        url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
-      - type: Security
-        url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-security/
-      - type: OpenAPI
-        url: openapi/grapes-knowledge-base-openapi.yml
+- aid: grapes-knowledge-base:grapes-knowledge-base-agents-api
+  name: Grapes Knowledge Base Agents API
+  description: Configure Grapes agents
+  humanURL: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
+  tags:
+  - Agents
+  properties:
+  - type: OpenAPI
+    url: openapi/grapes-knowledge-base-agents-api-openapi.yml
+  - type: Documentation
+    url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
+  - type: Security
+    url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-security/
+- aid: grapes-knowledge-base:grapes-knowledge-base-datasets-api
+  name: Grapes Knowledge Base Datasets API
+  description: Import and export datasets
+  humanURL: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
+  tags:
+  - Datasets
+  properties:
+  - type: OpenAPI
+    url: openapi/grapes-knowledge-base-datasets-api-openapi.yml
+  - type: Documentation
+    url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
+  - type: Security
+    url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-security/
+- aid: grapes-knowledge-base:grapes-knowledge-base-projects-api
+  name: Grapes Knowledge Base Projects API
+  description: Create and customize Grapes projects
+  humanURL: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
+  tags:
+  - Projects
+  properties:
+  - type: OpenAPI
+    url: openapi/grapes-knowledge-base-projects-api-openapi.yml
+  - type: Documentation
+    url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
+  - type: Security
+    url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-security/
 common:
   - type: AgenticAccess
     url: agentic-access/grapes-knowledge-base-agentic-access.yml
