@@ -1,0 +1,18 @@
+{
+  "provider": "grapes-knowledge-base",
+  "sources": [
+    "grapes-knowledge-base-agents-api-openapi.yml",
+    "grapes-knowledge-base-datasets-api-openapi.yml",
+    "grapes-knowledge-base-projects-api-openapi.yml"
+  ],
+  "outputs": [
+    "grapes-knowledge-base-agents-api-openapi.yml",
+    "grapes-knowledge-base-datasets-api-openapi.yml",
+    "grapes-knowledge-base-projects-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

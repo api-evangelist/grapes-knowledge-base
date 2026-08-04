@@ -1,0 +1,187 @@
+openapi: 3.1.0
+info:
+  title: Grapes Knowledge Base API
+  description: >-
+    The Grapes API allows you to automate recurring operations on the Grapes
+    knowledge management platform, including project administration, agent
+    configuration, and dataset import/export. The API follows HATEOAS
+    principles for link management between resources.
+  version: 1.0.0
+  contact:
+    name: Grapes Support
+    url: https://docs.data-grapes.com/en/
+externalDocs:
+  description: Grapes API Reference
+  url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
+
+servers:
+  - url: https://api.data-grapes.com
+    description: Grapes Production API (placeholder; see official docs)
+
+security:
+  - BearerAuth: []
+
+tags:
+  - name: Projects
+    description: Create and customize Grapes projects
+  - name: Agents
+    description: Configure Grapes agents
+  - name: Datasets
+    description: Import and export datasets
+  - name: Administration
+    description: Administer Grapes instances
+
+paths:
+  /projects:
+    get:
+      tags: [Projects]
+      summary: List projects
+      responses:
+        '200':
+          description: A list of projects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Project'
+    post:
+      tags: [Projects]
+      summary: Create project
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Project'
+      responses:
+        '201':
+          description: Project created
+
+  /projects/{projectId}:
+    get:
+      tags: [Projects]
+      summary: Get project
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: A project
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+
+  /agents:
+    get:
+      tags: [Agents]
+      summary: List agents
+      responses:
+        '200':
+          description: A list of agents
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Agent'
+    post:
+      tags: [Agents]
+      summary: Create agent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Agent'
+      responses:
+        '201':
+          description: Agent created
+
+  /datasets:
+    get:
+      tags: [Datasets]
+      summary: List datasets
+      responses:
+        '200':
+          description: A list of datasets
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dataset'
+
+  /datasets/{datasetId}/export:
+    get:
+      tags: [Datasets]
+      summary: Export dataset
+      parameters:
+        - name: datasetId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Dataset export payload
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /datasets/import:
+    post:
+      tags: [Datasets]
+      summary: Import dataset
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Dataset imported
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+  schemas:
+    Project:
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string }
+        description: { type: string }
+        createdAt: { type: string, format: date-time }
+        _links:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              href: { type: string }
+    Agent:
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string }
+        type: { type: string }
+        configuration:
+          type: object
+        projectId: { type: string }
+    Dataset:
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string }
+        format:
+          type: string
+          enum: [json, csv, xml]
+        size:
+          type: integer
+        projectId: { type: string }
