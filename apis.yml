@@ -85,7 +85,7 @@ common:
   - type: UserGuide
     url: https://docs.data-grapes.com/en/docs/user-guide/
   - type: OpenAPI
-    url: openapi/grapes-knowledge-base-openapi.yml
+    url: openapi/_original/grapes-knowledge-base-openapi.yml
   - type: JSONSchema
     url: json-schema/grapes-knowledge-base-project-schema.json
   - type: JSONLDContext
