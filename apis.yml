@@ -22,6 +22,12 @@ position: Consumer
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/grapes-knowledge-base.png
 tags:
+  - Knowledge-Management
+  - Knowledge Base
+  - Data Management
+  - Automation
+  - HATEOAS
+tags_raw:
   - Knowledge Management
   - Knowledge Base
   - Data Management
@@ -63,6 +69,8 @@ apis:
   description: Create and customize Grapes projects
   humanURL: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
