@@ -92,6 +92,8 @@ apis:
   - type: Security
     url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-security/
 common:
+  - type: Website
+    url: https://data-grapes.com/
   - type: AgenticAccess
     url: agentic-access/grapes-knowledge-base-agentic-access.yml
   - type: DomainSecurity
