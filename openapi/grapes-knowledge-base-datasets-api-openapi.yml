@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Grapes Knowledge Base Agents Datasets API
+  title: Grapes Knowledge Base Datasets API
   description: The Grapes API allows you to automate recurring operations on the Grapes knowledge management platform, including project administration, agent configuration, and dataset import/export. The API follows HATEOAS principles for link management between resources.
   version: 1.0.0
   contact:
@@ -29,6 +29,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Dataset'
+      operationId: getDatasets
+      x-operation-id-source: derived
   /datasets/{datasetId}/export:
     get:
       tags:
@@ -47,6 +49,8 @@ paths:
             application/json:
               schema:
                 type: object
+      operationId: getDatasetsByDatasetIdExport
+      x-operation-id-source: derived
   /datasets/import:
     post:
       tags:
@@ -61,6 +65,8 @@ paths:
       responses:
         '201':
           description: Dataset imported
+      operationId: postDatasetsImport
+      x-operation-id-source: derived
 components:
   schemas:
     Dataset:

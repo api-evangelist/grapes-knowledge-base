@@ -1,9 +1,7 @@
 {
   "provider": "grapes-knowledge-base",
   "sources": [
-    "grapes-knowledge-base-agents-api-openapi.yml",
-    "grapes-knowledge-base-datasets-api-openapi.yml",
-    "grapes-knowledge-base-projects-api-openapi.yml"
+    "_original/grapes-knowledge-base-openapi.yml"
   ],
   "outputs": [
     "grapes-knowledge-base-agents-api-openapi.yml",
@@ -13,6 +11,14 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "grapes-knowledge-base-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "grapes-knowledge-base-agents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "grapes-knowledge-base-datasets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "grapes-knowledge-base-projects-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
