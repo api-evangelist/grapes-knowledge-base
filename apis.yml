@@ -34,7 +34,7 @@ position: Consuming
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/grapes-knowledge-base.png
 tags:
-  - Knowledge-Management
+  - Knowledge Management
   - Knowledge Base
   - Data Management
   - Automation
@@ -45,6 +45,7 @@ tags_raw:
   - Data Management
   - Automation
   - HATEOAS
+  - Knowledge-Management
 created: '2025-02-24'
 modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/grapes-knowledge-base/refs/heads/main/apis.yml
