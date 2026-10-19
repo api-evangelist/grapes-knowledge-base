@@ -1,0 +1,71 @@
+openapi: 3.2.0
+info:
+  title: Grapes Root API
+  version: v1
+security:
+- Bearer: []
+tags:
+- name: Root
+paths:
+  /api/{version}:
+    get:
+      tags:
+      - Root
+      operationId: GetRoot
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/RootResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RootResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/RootResponse'
+      summary: Get root
+      x-summary-source: derived
+components:
+  schemas:
+    RootResponse:
+      type: object
+      properties:
+        version:
+          type:
+          - string
+          - 'null'
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/HateoasLink'
+      additionalProperties: false
+    HateoasLink:
+      type: object
+      properties:
+        relation:
+          type:
+          - string
+          - 'null'
+        uri:
+          type:
+          - string
+          - 'null'
+        method:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: oauth2
+      description: "JWT Authorization header using the Bearer scheme. \n\n Enter 'Bearer' [space] and then your token in the text input below.\n\nExample: \"Bearer 1safsfsdfdfd\""

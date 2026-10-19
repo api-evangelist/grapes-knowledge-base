@@ -1,0 +1,306 @@
+openapi: 3.2.0
+info:
+  title: Grapes Environments API
+  version: v1
+security:
+- Bearer: []
+tags:
+- name: Environments
+paths:
+  /api/{version}/organizations/{orgId}/projects/{projId}/environments:
+    get:
+      tags:
+      - Environments
+      operationId: GetEnvironments
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: projId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/EnvironmentDtoListItemResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnvironmentDtoListItemResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EnvironmentDtoListItemResponse'
+      summary: Get environments
+      x-summary-source: derived
+    post:
+      tags:
+      - Environments
+      operationId: CreateEnvironment
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: projId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateEnvironmentRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CreateEnvironmentRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateEnvironmentRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/EnvironmentDtoItemResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnvironmentDtoItemResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EnvironmentDtoItemResponse'
+        '400':
+          description: Validation failed
+      summary: Create environment
+      x-summary-source: derived
+  /api/{version}/organizations/{orgId}/projects/{projId}/environments/{id}:
+    get:
+      tags:
+      - Environments
+      operationId: GetEnvironmentById
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: projId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/EnvironmentDtoItemResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnvironmentDtoItemResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EnvironmentDtoItemResponse'
+        '404':
+          description: Environment not found
+      summary: Get environment by id
+      x-summary-source: derived
+    put:
+      tags:
+      - Environments
+      operationId: UpdateEnvironment
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: projId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateEnvironmentRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UpdateEnvironmentRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateEnvironmentRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/EnvironmentDtoItemResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnvironmentDtoItemResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EnvironmentDtoItemResponse'
+        '400':
+          description: Validation failed
+        '404':
+          description: Environment not found
+      summary: Update environment
+      x-summary-source: derived
+components:
+  schemas:
+    EnvironmentDtoItemResponse:
+      type: object
+      properties:
+        item:
+          $ref: '#/components/schemas/EnvironmentDto'
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/HateoasLink'
+      additionalProperties: false
+    CreateEnvironmentRequest:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        tag:
+          type:
+          - string
+          - 'null'
+        defaultAgentPool:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    HateoasLink:
+      type: object
+      properties:
+        relation:
+          type:
+          - string
+          - 'null'
+        uri:
+          type:
+          - string
+          - 'null'
+        method:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    EnvironmentDto:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        tag:
+          type:
+          - string
+          - 'null'
+        defaultAgentPool:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    EnvironmentDtoListItemResponse:
+      type: object
+      properties:
+        items:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/EnvironmentDtoItemResponse'
+        totalCount:
+          type: integer
+          format: int32
+      additionalProperties: false
+    UpdateEnvironmentRequest:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        tag:
+          type:
+          - string
+          - 'null'
+        defaultAgentPool:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: oauth2
+      description: "JWT Authorization header using the Bearer scheme. \n\n Enter 'Bearer' [space] and then your token in the text input below.\n\nExample: \"Bearer 1safsfsdfdfd\""

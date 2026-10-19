@@ -1,0 +1,208 @@
+openapi: 3.2.0
+info:
+  title: Grapes Personal Access Tokens API
+  version: v1
+security:
+- Bearer: []
+tags:
+- name: Personal Access Tokens
+paths:
+  /api/{version}/personal-access-tokens:
+    post:
+      tags:
+      - Personal Access Tokens
+      operationId: CreatePersonalAccessToken
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePersonalAccessTokenRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CreatePersonalAccessTokenRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreatePersonalAccessTokenRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PersonalAccessTokenDtoItemResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonalAccessTokenDtoItemResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PersonalAccessTokenDtoItemResponse'
+        '400':
+          description: Validation failed
+      summary: Create personal access token
+      x-summary-source: derived
+    get:
+      tags:
+      - Personal Access Tokens
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PersonalAccessTokenInfoDtoListItemResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonalAccessTokenInfoDtoListItemResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PersonalAccessTokenInfoDtoListItemResponse'
+      summary: Get api by version personal access tokens
+      x-summary-source: derived
+      operationId: getApiByVersionPersonalAccessTokens
+      x-operation-id-source: derived
+  /api/{version}/personal-access-tokens/{id}:
+    delete:
+      tags:
+      - Personal Access Tokens
+      operationId: DeletePersonalAccessToken
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Personal access token deleted successfully
+        '400':
+          description: Validation failed
+      summary: Delete personal access token
+      x-summary-source: derived
+components:
+  schemas:
+    PersonalAccessTokenInfoDtoItemResponse:
+      type: object
+      properties:
+        item:
+          $ref: '#/components/schemas/PersonalAccessTokenInfoDto'
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/HateoasLink'
+      additionalProperties: false
+    CreatePersonalAccessTokenRequest:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        organizationId:
+          type:
+          - string
+          - 'null'
+        customPrivileges:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
+    PersonalAccessTokenDtoItemResponse:
+      type: object
+      properties:
+        item:
+          $ref: '#/components/schemas/PersonalAccessTokenDto'
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/HateoasLink'
+      additionalProperties: false
+    PersonalAccessTokenDto:
+      type: object
+      properties:
+        plainTextToken:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    PersonalAccessTokenStatusTypes:
+      enum:
+      - Active
+      - Revoked
+      type: string
+    HateoasLink:
+      type: object
+      properties:
+        relation:
+          type:
+          - string
+          - 'null'
+        uri:
+          type:
+          - string
+          - 'null'
+        method:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    PersonalAccessTokenInfoDtoListItemResponse:
+      type: object
+      properties:
+        items:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PersonalAccessTokenInfoDtoItemResponse'
+        totalCount:
+          type: integer
+          format: int32
+      additionalProperties: false
+    PersonalAccessTokenInfoDto:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        organizationId:
+          type:
+          - string
+          - 'null'
+        createdDate:
+          type: string
+          format: date-time
+        status:
+          $ref: '#/components/schemas/PersonalAccessTokenStatusTypes'
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: oauth2
+      description: "JWT Authorization header using the Bearer scheme. \n\n Enter 'Bearer' [space] and then your token in the text input below.\n\nExample: \"Bearer 1safsfsdfdfd\""

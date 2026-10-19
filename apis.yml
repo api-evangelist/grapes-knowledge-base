@@ -51,19 +51,6 @@ modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/grapes-knowledge-base/refs/heads/main/apis.yml
 specificationVersion: '0.23'
 apis:
-- aid: grapes-knowledge-base:grapes-knowledge-base-agents-api
-  name: Grapes Knowledge Base Agents API
-  description: Configure Grapes agents
-  humanURL: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
-  tags:
-  - Agents
-  properties:
-  - type: OpenAPI
-    url: openapi/grapes-knowledge-base-agents-api-openapi.yml
-  - type: Documentation
-    url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
-  - type: Security
-    url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-security/
 - aid: grapes-knowledge-base:grapes-knowledge-base-datasets-api
   name: Grapes Knowledge Base Datasets API
   description: Import and export datasets
@@ -88,6 +75,191 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/grapes-knowledge-base-projects-api-openapi.yml
+  - type: Documentation
+    url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
+  - type: Security
+    url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-security/
+- aid: grapes-knowledge-base:grapes-knowledge-base-communicationhub-api
+  name: Grapes Knowledge Base Communication Hub API
+  description: >-
+    The CommunicationHub API from Grapes Knowledge Base — 1 operation(s) for communicationhub.
+  humanURL: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
+  tags:
+  - CommunicationHub
+  properties:
+  - type: OpenAPI
+    url: openapi/grapes-knowledge-base-communicationhub-api-openapi.yml
+  - type: Documentation
+    url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
+  - type: Security
+    url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-security/
+- aid: grapes-knowledge-base:grapes-knowledge-base-databases-api
+  name: Grapes Knowledge Base Databases API
+  description: The Databases API from Grapes Knowledge Base — 4 operation(s) for databases.
+  humanURL: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
+  tags:
+  - Databases
+  properties:
+  - type: OpenAPI
+    url: openapi/grapes-knowledge-base-databases-api-openapi.yml
+  - type: Documentation
+    url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
+  - type: Security
+    url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-security/
+- aid: grapes-knowledge-base:grapes-knowledge-base-environments-api
+  name: Grapes Knowledge Base Environments API
+  description: The Environments API from Grapes Knowledge Base — 2 operation(s) for environments.
+  humanURL: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
+  tags:
+  - Environments
+  properties:
+  - type: OpenAPI
+    url: openapi/grapes-knowledge-base-environments-api-openapi.yml
+  - type: Documentation
+    url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
+  - type: Security
+    url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-security/
+- aid: grapes-knowledge-base:grapes-knowledge-base-grapes-api
+  name: Grapes Knowledge Base Grapes API
+  description: The Grapes API from Grapes Knowledge Base — 2 operation(s) for grapes.
+  humanURL: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
+  tags:
+  - Grapes
+  properties:
+  - type: OpenAPI
+    url: openapi/grapes-knowledge-base-grapes-api-openapi.yml
+  - type: Documentation
+    url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
+  - type: Security
+    url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-security/
+- aid: grapes-knowledge-base:grapes-knowledge-base-infrastructures-api
+  name: Grapes Knowledge Base Infrastructures API
+  description: The Infrastructures API from Grapes Knowledge Base — 2 operation(s) for infrastructures.
+  humanURL: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
+  tags:
+  - Infrastructures
+  properties:
+  - type: OpenAPI
+    url: openapi/grapes-knowledge-base-infrastructures-api-openapi.yml
+  - type: Documentation
+    url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
+  - type: Security
+    url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-security/
+- aid: grapes-knowledge-base:grapes-knowledge-base-notifications-api
+  name: Grapes Knowledge Base Notifications API
+  description: The Notifications API from Grapes Knowledge Base — 2 operation(s) for notifications.
+  humanURL: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
+  tags:
+  - Notifications
+  properties:
+  - type: OpenAPI
+    url: openapi/grapes-knowledge-base-notifications-api-openapi.yml
+  - type: Documentation
+    url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
+  - type: Security
+    url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-security/
+- aid: grapes-knowledge-base:grapes-knowledge-base-organizations-api
+  name: Grapes Knowledge Base Organizations API
+  description: The Organizations API from Grapes Knowledge Base — 3 operation(s) for organizations.
+  humanURL: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
+  tags:
+  - Organizations
+  properties:
+  - type: OpenAPI
+    url: openapi/grapes-knowledge-base-organizations-api-openapi.yml
+  - type: Documentation
+    url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
+  - type: Security
+    url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-security/
+- aid: grapes-knowledge-base:grapes-knowledge-base-resource-api
+  name: Grapes Knowledge Base Resource API
+  description: The Resource API from Grapes Knowledge Base — 2 operation(s) for resource.
+  humanURL: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
+  tags:
+  - Resource
+  properties:
+  - type: OpenAPI
+    url: openapi/grapes-knowledge-base-resource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
+  - type: Security
+    url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-security/
+- aid: grapes-knowledge-base:grapes-knowledge-base-root-api
+  name: Grapes Knowledge Base Root API
+  description: The Root API from Grapes Knowledge Base — 1 operation(s) for root.
+  humanURL: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
+  tags:
+  - Root
+  properties:
+  - type: OpenAPI
+    url: openapi/grapes-knowledge-base-root-api-openapi.yml
+  - type: Documentation
+    url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
+  - type: Security
+    url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-security/
+- aid: grapes-knowledge-base:grapes-knowledge-base-sensitivefields-api
+  name: Grapes Knowledge Base Sensitive Fields API
+  description: The SensitiveFields API from Grapes Knowledge Base — 4 operation(s) for sensitivefields.
+  humanURL: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
+  tags:
+  - SensitiveFields
+  properties:
+  - type: OpenAPI
+    url: openapi/grapes-knowledge-base-sensitivefields-api-openapi.yml
+  - type: Documentation
+    url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
+  - type: Security
+    url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-security/
+- aid: grapes-knowledge-base:grapes-knowledge-base-tasks-api
+  name: Grapes Knowledge Base Tasks API
+  description: The Tasks API from Grapes Knowledge Base — 3 operation(s) for tasks.
+  humanURL: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
+  tags:
+  - Tasks
+  properties:
+  - type: OpenAPI
+    url: openapi/grapes-knowledge-base-tasks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
+  - type: Security
+    url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-security/
+- aid: grapes-knowledge-base:grapes-knowledge-base-userscontrollers-api
+  name: Grapes Knowledge Base Users Controllers API
+  description: >-
+    The UsersControllers API from Grapes Knowledge Base — 3 operation(s) for userscontrollers.
+  humanURL: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
+  tags:
+  - UsersControllers
+  properties:
+  - type: OpenAPI
+    url: openapi/grapes-knowledge-base-userscontrollers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
+  - type: Security
+    url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-security/
+- aid: grapes-knowledge-base:grapes-knowledge-base-agent-pools-api
+  name: Grapes Knowledge Base Agent Pools API
+  description: The Agent Pools API from Grapes Knowledge Base — 5 operation(s) for agent pools.
+  humanURL: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
+  tags:
+  - Agent Pools
+  properties:
+  - type: OpenAPI
+    url: openapi/grapes-knowledge-base-agent-pools-api-openapi.yml
+  - type: Documentation
+    url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
+  - type: Security
+    url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-security/
+- aid: grapes-knowledge-base:grapes-knowledge-base-personal-access-tokens-api
+  name: Grapes Knowledge Base Personal Access Tokens API
+  description: >-
+    The Personal Access Tokens API from Grapes Knowledge Base — 2 operation(s) for personal access tokens.
+  humanURL: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
+  tags:
+  - Personal Access Tokens
+  properties:
+  - type: OpenAPI
+    url: openapi/grapes-knowledge-base-personal-access-tokens-api-openapi.yml
   - type: Documentation
     url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
   - type: Security

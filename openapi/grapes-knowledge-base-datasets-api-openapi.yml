@@ -1,95 +1,613 @@
 openapi: 3.2.0
 info:
-  title: Grapes Knowledge Base Datasets API
-  description: The Grapes API allows you to automate recurring operations on the Grapes knowledge management platform, including project administration, agent configuration, and dataset import/export. The API follows HATEOAS principles for link management between resources.
-  version: 1.0.0
-  contact:
-    name: Grapes Support
-    url: https://docs.data-grapes.com/en/
-servers:
-- url: https://api.data-grapes.com
-  description: Grapes Production API (placeholder; see official docs)
+  title: Grapes Datasets API
+  version: v1
 security:
-- BearerAuth: []
+- Bearer: []
 tags:
 - name: Datasets
-  description: Import and export datasets
 paths:
-  /datasets:
+  /api/{version}/organizations/{orgId}/projects/{projId}/grapes/{grapeId}/datasets:
     get:
       tags:
       - Datasets
-      summary: List datasets
-      responses:
-        '200':
-          description: A list of datasets
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Dataset'
-      operationId: getDatasets
-      x-operation-id-source: derived
-  /datasets/{datasetId}/export:
-    get:
-      tags:
-      - Datasets
-      summary: Export dataset
+      operationId: GetDatasets
       parameters:
-      - name: datasetId
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: projId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: grapeId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
         in: path
         required: true
         schema:
           type: string
       responses:
         '200':
-          description: Dataset export payload
+          description: OK
           content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DatasetDtoListItemResponse'
             application/json:
               schema:
-                type: object
-      operationId: getDatasetsByDatasetIdExport
-      x-operation-id-source: derived
-  /datasets/import:
+                $ref: '#/components/schemas/DatasetDtoListItemResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DatasetDtoListItemResponse'
+      summary: Get datasets
+      x-summary-source: derived
     post:
       tags:
       - Datasets
-      summary: Import dataset
-      requestBody:
+      operationId: CreateDataset
+      parameters:
+      - name: orgId
+        in: path
         required: true
+        schema:
+          type: string
+      - name: projId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: grapeId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
         content:
           application/json:
             schema:
-              type: object
+              $ref: '#/components/schemas/CreateDatasetRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CreateDatasetRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateDatasetRequest'
       responses:
-        '201':
-          description: Dataset imported
-      operationId: postDatasetsImport
-      x-operation-id-source: derived
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DatasetDtoItemResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetDtoItemResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DatasetDtoItemResponse'
+        '400':
+          description: Validation failed
+      summary: Create dataset
+      x-summary-source: derived
+  /api/{version}/organizations/{orgId}/projects/{projId}/grapes/{grapeId}/datasets/{id}:
+    get:
+      tags:
+      - Datasets
+      operationId: GetDatasetById
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: projId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: grapeId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DatasetDtoItemResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetDtoItemResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DatasetDtoItemResponse'
+        '404':
+          description: Dataset not found
+      summary: Get dataset by id
+      x-summary-source: derived
+    put:
+      tags:
+      - Datasets
+      operationId: UpdateDataset
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: projId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: grapeId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDatasetRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDatasetRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateDatasetRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DatasetDtoItemResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetDtoItemResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DatasetDtoItemResponse'
+        '400':
+          description: Validation failed
+        '404':
+          description: Dataset not found
+      summary: Update dataset
+      x-summary-source: derived
+    delete:
+      tags:
+      - Datasets
+      operationId: DeleteDataset
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: projId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: grapeId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Validation failed
+        '404':
+          description: Dataset not found
+      summary: Delete dataset
+      x-summary-source: derived
+  /api/{version}/organizations/{orgId}/projects/{projId}/grapes/{grapeId}/datasets/{id}/extract-data:
+    post:
+      tags:
+      - Datasets
+      operationId: ExtractDataset
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: projId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: grapeId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExtractDataRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ExtractDataRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ExtractDataRequest'
+      responses:
+        '202':
+          description: Accepted
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/IActionResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IActionResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/IActionResult'
+        '400':
+          description: Validation failed
+        '404':
+          description: Dataset not found
+      summary: Extract dataset
+      x-summary-source: derived
+  /api/{version}/organizations/{orgId}/projects/{projId}/grapes/{grapeId}/datasets/{id}/import-data:
+    post:
+      tags:
+      - Datasets
+      operationId: ImportDataset
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: projId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: grapeId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportDatasetRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ImportDatasetRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ImportDatasetRequest'
+      responses:
+        '202':
+          description: Accepted
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/IActionResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IActionResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/IActionResult'
+        '400':
+          description: Validation failed
+        '404':
+          description: Dataset not found
+      summary: Import dataset
+      x-summary-source: derived
+  /api/{version}/organizations/{orgId}/projects/{projId}/grapes/{grapeId}/datasets/{id}/upload:
+    post:
+      tags:
+      - Datasets
+      operationId: UploadDataset
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: projId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: grapeId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '202':
+          description: Accepted
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/IActionResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IActionResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/IActionResult'
+        '400':
+          description: Validation failed
+        '404':
+          description: Dataset not found
+        '415':
+          description: Content-Type not supported
+      summary: Upload dataset
+      x-summary-source: derived
+  /api/{version}/organizations/{orgId}/projects/{projId}/grapes/{grapeId}/datasets/{id}/download:
+    get:
+      tags:
+      - Datasets
+      operationId: DownloadDataset
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: projId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: grapeId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '404':
+          description: Dataset not found
+      summary: Download dataset
+      x-summary-source: derived
 components:
   schemas:
-    Dataset:
+    DatasetStatusTypes:
+      enum:
+      - Empty
+      - InProgress
+      - Ready
+      - Error
+      type: string
+    ImportDatasetRequest:
+      type: object
+      properties:
+        targetEnvironmentId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    DatasetParameterValueDto:
+      type: object
+      properties:
+        parmeterId:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    CreateDatasetRequest:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        parameters:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/DatasetParameterValueDto'
+      additionalProperties: false
+    DatasetDtoListItemResponse:
+      type: object
+      properties:
+        items:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/DatasetDtoItemResponse'
+        totalCount:
+          type: integer
+          format: int32
+      additionalProperties: false
+    DatasetDto:
       type: object
       properties:
         id:
-          type: string
+          type:
+          - string
+          - 'null'
         name:
-          type: string
-        format:
-          type: string
-          enum:
-          - json
-          - csv
-          - xml
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/DatasetStatusTypes'
+        latestExecutionDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
         size:
-          type: integer
-        projectId:
-          type: string
+          type:
+          - integer
+          - 'null'
+          format: int64
+        parameters:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/DatasetParameterValueDto'
+      additionalProperties: false
+    IActionResult:
+      type: object
+      additionalProperties: false
+    HateoasLink:
+      type: object
+      properties:
+        relation:
+          type:
+          - string
+          - 'null'
+        uri:
+          type:
+          - string
+          - 'null'
+        method:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    UpdateDatasetRequest:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/DatasetStatusTypes'
+        latestExecutionDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        size:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        parameters:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/DatasetParameterValueDto'
+      additionalProperties: false
+    ExtractDataRequest:
+      type: object
+      properties:
+        environmentId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    DatasetDtoItemResponse:
+      type: object
+      properties:
+        item:
+          $ref: '#/components/schemas/DatasetDto'
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/HateoasLink'
+      additionalProperties: false
   securitySchemes:
-    BearerAuth:
-      type: http
-      scheme: bearer
-externalDocs:
-  description: Grapes API Reference
-  url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
+    Bearer:
+      type: oauth2
+      description: "JWT Authorization header using the Bearer scheme. \n\n Enter 'Bearer' [space] and then your token in the text input below.\n\nExample: \"Bearer 1safsfsdfdfd\""

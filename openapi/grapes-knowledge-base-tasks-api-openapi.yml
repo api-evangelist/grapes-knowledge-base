@@ -1,0 +1,417 @@
+openapi: 3.2.0
+info:
+  title: Grapes Tasks API
+  version: v1
+security:
+- Bearer: []
+tags:
+- name: Tasks
+paths:
+  /api/{version}/organizations/{orgId}/tasks:
+    get:
+      tags:
+      - Tasks
+      operationId: GetTasks
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: projectId
+        in: query
+        schema:
+          type: string
+      - name: Skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+      - name: Take
+        in: query
+        schema:
+          type: integer
+          format: int32
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TaskDtoListItemResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskDtoListItemResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TaskDtoListItemResponse'
+      summary: Get tasks
+      x-summary-source: derived
+  /api/{version}/organizations/{orgId}/tasks/{id}:
+    patch:
+      tags:
+      - Tasks
+      operationId: UpdateTask
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTaskRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTaskRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateTaskRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TaskDtoItemResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskDtoItemResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TaskDtoItemResponse'
+        '400':
+          description: Validation failed
+      summary: Update task
+      x-summary-source: derived
+    get:
+      tags:
+      - Tasks
+      operationId: GetTaskById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/IActionResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IActionResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/IActionResult'
+      summary: Get task by id
+      x-summary-source: derived
+  /api/{version}/organizations/{orgId}/tasks/{id}/events:
+    get:
+      tags:
+      - Tasks
+      operationId: GetTaskEvents
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TaskEventDtoListItemResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskEventDtoListItemResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TaskEventDtoListItemResponse'
+      summary: Get task events
+      x-summary-source: derived
+    post:
+      tags:
+      - Tasks
+      operationId: CreateTaskEvents
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTaskEventsRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CreateTaskEventsRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateTaskEventsRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/IActionResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IActionResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/IActionResult'
+        '400':
+          description: Validation failed
+      summary: Create task events
+      x-summary-source: derived
+components:
+  schemas:
+    TasksTypes:
+      enum:
+      - DatabaseReadSchema
+      - ExtratData
+      - ImportData
+      - RecognizeSensitiveFields
+      - UpgradeAgent
+      type: string
+    TaskEventDto:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        message:
+          type:
+          - string
+          - 'null'
+        eventDate:
+          type: string
+          format: date-time
+        status:
+          $ref: '#/components/schemas/TaskEventStatusTypes'
+        duration:
+          type: integer
+          format: int64
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        errorDetails:
+          type:
+          - string
+          - 'null'
+        group:
+          type: integer
+          format: int32
+      additionalProperties: false
+    TaskDto:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        projectId:
+          type:
+          - string
+          - 'null'
+        type:
+          $ref: '#/components/schemas/TasksTypes'
+        ownerId:
+          type:
+          - string
+          - 'null'
+        taskTarget:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type:
+            - string
+            - 'null'
+        createdDate:
+          type: string
+          format: date-time
+        lastUpdatedDate:
+          type: string
+          format: date-time
+        processingStartDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        status:
+          $ref: '#/components/schemas/TasksStatus'
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        duration:
+          type:
+          - integer
+          - 'null'
+          format: int64
+      additionalProperties: false
+    TaskDtoListItemResponse:
+      type: object
+      properties:
+        items:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/TaskDtoItemResponse'
+        totalCount:
+          type: integer
+          format: int32
+      additionalProperties: false
+    TaskDtoItemResponse:
+      type: object
+      properties:
+        item:
+          $ref: '#/components/schemas/TaskDto'
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/HateoasLink'
+      additionalProperties: false
+    TasksStatus:
+      enum:
+      - Created
+      - InProgress
+      - Canceled
+      - Error
+      - Completed
+      type: string
+    TaskEventStatusTypes:
+      enum:
+      - Success
+      - Error
+      type: string
+    IActionResult:
+      type: object
+      additionalProperties: false
+    TaskEventDtoListItemResponse:
+      type: object
+      properties:
+        items:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/TaskEventDtoItemResponse'
+        totalCount:
+          type: integer
+          format: int32
+      additionalProperties: false
+    TaskEventDtoItemResponse:
+      type: object
+      properties:
+        item:
+          $ref: '#/components/schemas/TaskEventDto'
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/HateoasLink'
+      additionalProperties: false
+    HateoasLink:
+      type: object
+      properties:
+        relation:
+          type:
+          - string
+          - 'null'
+        uri:
+          type:
+          - string
+          - 'null'
+        method:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    CreateTaskEventsRequest:
+      type: object
+      properties:
+        events:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/TaskEventDto'
+      additionalProperties: false
+    UpdateTaskRequest:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/TasksStatus'
+        errorMessage:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: oauth2
+      description: "JWT Authorization header using the Bearer scheme. \n\n Enter 'Bearer' [space] and then your token in the text input below.\n\nExample: \"Bearer 1safsfsdfdfd\""

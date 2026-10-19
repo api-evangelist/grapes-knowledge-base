@@ -1,0 +1,508 @@
+openapi: 3.2.0
+info:
+  title: Grapes Agent Pools API
+  version: v1
+security:
+- Bearer: []
+tags:
+- name: Agent Pools
+paths:
+  /api/{version}/organizations/{orgId}/agent-pools:
+    get:
+      tags:
+      - Agent Pools
+      operationId: GetAgentPools
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AgentPoolDtoListItemResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentPoolDtoListItemResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AgentPoolDtoListItemResponse'
+      summary: Get agent pools
+      x-summary-source: derived
+    post:
+      tags:
+      - Agent Pools
+      operationId: CreateAgentPool
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAgentPoolRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CreateAgentPoolRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateAgentPoolRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AgentPoolDtoItemResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentPoolDtoItemResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AgentPoolDtoItemResponse'
+        '400':
+          description: Validation failed
+      summary: Create agent pool
+      x-summary-source: derived
+  /api/{version}/organizations/{orgId}/agent-pools/{agentPoolId}/agents:
+    get:
+      tags:
+      - Agent Pools
+      operationId: GetAgents
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: agentPoolId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AgentDtoListItemResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentDtoListItemResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AgentDtoListItemResponse'
+      summary: Get agents
+      x-summary-source: derived
+    post:
+      tags:
+      - Agent Pools
+      operationId: CreateAgent
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: agentPoolId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAgentRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CreateAgentRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateAgentRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AgentDtoItemResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentDtoItemResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AgentDtoItemResponse'
+        '400':
+          description: Validation failed
+      summary: Create agent
+      x-summary-source: derived
+  /api/{version}/organizations/{orgId}/agent-pools/{agentPoolId}/agents/{agentId}:
+    get:
+      tags:
+      - Agent Pools
+      operationId: GetAgentById
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: agentPoolId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: agentId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AgentDtoItemResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentDtoItemResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AgentDtoItemResponse'
+      summary: Get agent by id
+      x-summary-source: derived
+    patch:
+      tags:
+      - Agent Pools
+      operationId: UpdateAgent
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: agentPoolId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: agentId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAgentRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAgentRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateAgentRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AgentDtoItemResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentDtoItemResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AgentDtoItemResponse'
+        '400':
+          description: Validation failed
+      summary: Update agent
+      x-summary-source: derived
+  /api/{version}/organizations/{orgId}/agent-pools/{agentPoolId}/agents/{agentId}/upgrade:
+    post:
+      tags:
+      - Agent Pools
+      operationId: UpgradeAgent
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: agentPoolId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: agentId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/IActionResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IActionResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/IActionResult'
+        '400':
+          description: Validation failed
+      summary: Upgrade agent
+      x-summary-source: derived
+  /api/{version}/organizations/{orgId}/agent-pools/{agentPoolId}/authorize:
+    post:
+      tags:
+      - Agent Pools
+      operationId: AuthorizeAgent
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: agentPoolId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ActionResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActionResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ActionResult'
+        '400':
+          description: Validation failed
+      summary: Authorize agent
+      x-summary-source: derived
+components:
+  schemas:
+    AgentStatusTypes:
+      enum:
+      - Unknown
+      - Up
+      - Down
+      - Stopped
+      - Running
+      type: string
+    AgentPoolDto:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        type:
+          $ref: '#/components/schemas/AgentPoolTypes'
+      additionalProperties: false
+    AgentDto:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/AgentStatusTypes'
+        lastSeenDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        identity:
+          type:
+          - string
+          - 'null'
+        version:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ActionResult:
+      type: object
+      additionalProperties: false
+    AgentPoolTypes:
+      enum:
+      - GrapesAgent
+      - SelfHosted
+      type: string
+    AgentDtoItemResponse:
+      type: object
+      properties:
+        item:
+          $ref: '#/components/schemas/AgentDto'
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/HateoasLink'
+      additionalProperties: false
+    AgentDtoListItemResponse:
+      type: object
+      properties:
+        items:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/AgentDtoItemResponse'
+        totalCount:
+          type: integer
+          format: int32
+      additionalProperties: false
+    IActionResult:
+      type: object
+      additionalProperties: false
+    AgentPoolDtoListItemResponse:
+      type: object
+      properties:
+        items:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/AgentPoolDtoItemResponse'
+        totalCount:
+          type: integer
+          format: int32
+      additionalProperties: false
+    UpdateAgentRequest:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/AgentStatusTypes'
+        version:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    HateoasLink:
+      type: object
+      properties:
+        relation:
+          type:
+          - string
+          - 'null'
+        uri:
+          type:
+          - string
+          - 'null'
+        method:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    CreateAgentPoolRequest:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    CreateAgentRequest:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    AgentPoolDtoItemResponse:
+      type: object
+      properties:
+        item:
+          $ref: '#/components/schemas/AgentPoolDto'
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/HateoasLink'
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: oauth2
+      description: "JWT Authorization header using the Bearer scheme. \n\n Enter 'Bearer' [space] and then your token in the text input below.\n\nExample: \"Bearer 1safsfsdfdfd\""

@@ -1,96 +1,374 @@
 openapi: 3.2.0
 info:
-  title: Grapes Knowledge Base Projects API
-  description: The Grapes API allows you to automate recurring operations on the Grapes knowledge management platform, including project administration, agent configuration, and dataset import/export. The API follows HATEOAS principles for link management between resources.
-  version: 1.0.0
-  contact:
-    name: Grapes Support
-    url: https://docs.data-grapes.com/en/
-servers:
-- url: https://api.data-grapes.com
-  description: Grapes Production API (placeholder; see official docs)
+  title: Grapes Projects API
+  version: v1
 security:
-- BearerAuth: []
+- Bearer: []
 tags:
 - name: Projects
-  description: Create and customize Grapes projects
 paths:
-  /projects:
+  /api/{version}/organizations/{orgId}/projects:
     get:
       tags:
       - Projects
-      summary: List projects
-      responses:
-        '200':
-          description: A list of projects
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Project'
-      operationId: getProjects
-      x-operation-id-source: derived
-    post:
-      tags:
-      - Projects
-      summary: Create project
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Project'
-      responses:
-        '201':
-          description: Project created
-      operationId: postProjects
-      x-operation-id-source: derived
-  /projects/{projectId}:
-    get:
-      tags:
-      - Projects
-      summary: Get project
+      operationId: GetProjects
       parameters:
-      - name: projectId
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: searchQuery
+        in: query
+        schema:
+          type: string
+      - name: version
         in: path
         required: true
         schema:
           type: string
       responses:
         '200':
-          description: A project
+          description: OK
           content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProjectDtoListItemResponse'
             application/json:
               schema:
-                $ref: '#/components/schemas/Project'
-      operationId: getProjectsByProjectId
-      x-operation-id-source: derived
+                $ref: '#/components/schemas/ProjectDtoListItemResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProjectDtoListItemResponse'
+      summary: Get projects
+      x-summary-source: derived
+    post:
+      tags:
+      - Projects
+      operationId: CreateProject
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProjectRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CreateProjectRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateProjectRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProjectDtoItemResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectDtoItemResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProjectDtoItemResponse'
+        '400':
+          description: Validation failed
+      summary: Create project
+      x-summary-source: derived
+  /api/{version}/organizations/{orgId}/projects/{id}:
+    get:
+      tags:
+      - Projects
+      operationId: GetProjectById
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProjectDtoItemResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectDtoItemResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProjectDtoItemResponse'
+        '404':
+          description: Project not found
+      summary: Get project by id
+      x-summary-source: derived
+    put:
+      tags:
+      - Projects
+      operationId: UpdateProject
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProjectRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProjectRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateProjectRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProjectDtoItemResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectDtoItemResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProjectDtoItemResponse'
+        '400':
+          description: Validation failed
+        '404':
+          description: Project not found
+      summary: Update project
+      x-summary-source: derived
+    delete:
+      tags:
+      - Projects
+      operationId: DeleteProject
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Project deleted successfully
+        '404':
+          description: Project not found
+      summary: Delete project
+      x-summary-source: derived
+  /api/{version}/organizations/{orgId}/projects/{id}/stats:
+    get:
+      tags:
+      - Projects
+      operationId: GetProjectStatsById
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProjectStatsDtoItemResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectStatsDtoItemResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProjectStatsDtoItemResponse'
+        '404':
+          description: Project not found
+      summary: Get project stats by id
+      x-summary-source: derived
 components:
   schemas:
-    Project:
+    ProjectDto:
       type: object
       properties:
         id:
-          type: string
+          type:
+          - string
+          - 'null'
         name:
-          type: string
+          type:
+          - string
+          - 'null'
         description:
-          type: string
-        createdAt:
-          type: string
-          format: date-time
-        _links:
-          type: object
-          additionalProperties:
-            type: object
-            properties:
-              href:
-                type: string
+          type:
+          - string
+          - 'null'
+        sensitiveFieldsWorkflow:
+          $ref: '#/components/schemas/SensitiveFieldsWorkflows'
+      additionalProperties: false
+    CreateProjectRequest:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        sensitiveFieldsWorkflow:
+          $ref: '#/components/schemas/SensitiveFieldsWorkflows'
+      additionalProperties: false
+    UpdateProjectRequest:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        sensitiveFieldsWorkflow:
+          $ref: '#/components/schemas/SensitiveFieldsWorkflows'
+      additionalProperties: false
+    SensitiveFieldsWorkflows:
+      enum:
+      - Straightforward
+      - Review
+      type: string
+    ProjectDtoItemResponse:
+      type: object
+      properties:
+        item:
+          $ref: '#/components/schemas/ProjectDto'
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/HateoasLink'
+      additionalProperties: false
+    HateoasLink:
+      type: object
+      properties:
+        relation:
+          type:
+          - string
+          - 'null'
+        uri:
+          type:
+          - string
+          - 'null'
+        method:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ProjectStatsDto:
+      type: object
+      properties:
+        databasesCount:
+          type: integer
+          format: int32
+        grapesCount:
+          type: integer
+          format: int32
+        datasetsCount:
+          type: integer
+          format: int32
+        datasetsSize:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        tasksSuccessRate:
+          type: number
+          format: double
+        sensitiveFieldsCount:
+          type: integer
+          format: int32
+      additionalProperties: false
+    ProjectStatsDtoItemResponse:
+      type: object
+      properties:
+        item:
+          $ref: '#/components/schemas/ProjectStatsDto'
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/HateoasLink'
+      additionalProperties: false
+    ProjectDtoListItemResponse:
+      type: object
+      properties:
+        items:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ProjectDtoItemResponse'
+        totalCount:
+          type: integer
+          format: int32
+      additionalProperties: false
   securitySchemes:
-    BearerAuth:
-      type: http
-      scheme: bearer
-externalDocs:
-  description: Grapes API Reference
-  url: https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/
+    Bearer:
+      type: oauth2
+      description: "JWT Authorization header using the Bearer scheme. \n\n Enter 'Bearer' [space] and then your token in the text input below.\n\nExample: \"Bearer 1safsfsdfdfd\""

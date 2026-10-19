@@ -1,0 +1,84 @@
+openapi: 3.2.0
+info:
+  title: Grapes Communication Hub API
+  version: v1
+security:
+- Bearer: []
+tags:
+- name: CommunicationHub
+paths:
+  /communication-hub/negotiate:
+    post:
+      tags:
+      - CommunicationHub
+      operationId: negociate
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/NegotiationResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NegotiationResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/NegotiationResponse'
+      summary: Negociate
+      x-summary-source: derived
+components:
+  schemas:
+    NegotiationResponse:
+      type: object
+      properties:
+        url:
+          type:
+          - string
+          - 'null'
+        accessToken:
+          type:
+          - string
+          - 'null'
+        connectionId:
+          type:
+          - string
+          - 'null'
+        connectionToken:
+          type:
+          - string
+          - 'null'
+        version:
+          type: integer
+          format: int32
+        availableTransports:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/AvailableTransport'
+        error:
+          type:
+          - string
+          - 'null'
+        useStatefulReconnect:
+          type: boolean
+      additionalProperties: false
+    AvailableTransport:
+      type: object
+      properties:
+        transport:
+          type:
+          - string
+          - 'null'
+        transferFormats:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: oauth2
+      description: "JWT Authorization header using the Bearer scheme. \n\n Enter 'Bearer' [space] and then your token in the text input below.\n\nExample: \"Bearer 1safsfsdfdfd\""

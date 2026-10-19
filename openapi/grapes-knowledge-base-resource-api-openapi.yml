@@ -1,0 +1,307 @@
+openapi: 3.2.0
+info:
+  title: Grapes Resource API
+  version: v1
+security:
+- Bearer: []
+tags:
+- name: Resource
+paths:
+  /api/{version}/organizations/{orgId}/resources:
+    post:
+      tags:
+      - Resource
+      operationId: CreateResource
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateResourceRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CreateResourceRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateResourceRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ResourceDtoItemResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceDtoItemResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ResourceDtoItemResponse'
+        '400':
+          description: Validation failed
+      summary: Create resource
+      x-summary-source: derived
+    get:
+      tags:
+      - Resource
+      operationId: GetResources
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: includeData
+        in: query
+        schema:
+          type: boolean
+      - name: projectId
+        in: query
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ResourceDtoListItemResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceDtoListItemResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ResourceDtoListItemResponse'
+      summary: Get resources
+      x-summary-source: derived
+  /api/{version}/organizations/{orgId}/resources/{id}:
+    put:
+      tags:
+      - Resource
+      operationId: UpdateResource
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateResourceRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UpdateResourceRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateResourceRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ResourceDtoItemResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceDtoItemResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ResourceDtoItemResponse'
+        '400':
+          description: Validation failed
+      summary: Update resource
+      x-summary-source: derived
+    get:
+      tags:
+      - Resource
+      operationId: GetResourceById
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ResourceDtoItemResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceDtoItemResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ResourceDtoItemResponse'
+        '404':
+          description: Resource not found
+      summary: Get resource by id
+      x-summary-source: derived
+components:
+  schemas:
+    ResourceDtoListItemResponse:
+      type: object
+      properties:
+        items:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ResourceDtoItemResponse'
+        totalCount:
+          type: integer
+          format: int32
+      additionalProperties: false
+    ResourceTypes:
+      enum:
+      - VALUE
+      - KEY_VALUE
+      type: string
+    ResourceScopeDto:
+      type: object
+      properties:
+        level:
+          $ref: '#/components/schemas/ResourceScopeTypes'
+        projectsScope:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
+    ResourceScopeTypes:
+      enum:
+      - Global
+      - Organization
+      - Project
+      type: string
+    CreateResourceRequest:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        data:
+          $ref: '#/components/schemas/IResourceItem'
+        scopeLevel:
+          $ref: '#/components/schemas/ResourceScopeTypes'
+        projectsScope:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
+    ResourceDto:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        data:
+          $ref: '#/components/schemas/IResourceItem'
+        scope:
+          $ref: '#/components/schemas/ResourceScopeDto'
+      additionalProperties: false
+    IResourceItem:
+      type: object
+      properties:
+        resourceType:
+          $ref: '#/components/schemas/ResourceTypes'
+      additionalProperties: false
+    HateoasLink:
+      type: object
+      properties:
+        relation:
+          type:
+          - string
+          - 'null'
+        uri:
+          type:
+          - string
+          - 'null'
+        method:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ResourceDtoItemResponse:
+      type: object
+      properties:
+        item:
+          $ref: '#/components/schemas/ResourceDto'
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/HateoasLink'
+      additionalProperties: false
+    UpdateResourceRequest:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        type:
+          $ref: '#/components/schemas/ResourceTypes'
+        data:
+          $ref: '#/components/schemas/IResourceItem'
+        scopeLevel:
+          $ref: '#/components/schemas/ResourceScopeTypes'
+        projectsScope:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: oauth2
+      description: "JWT Authorization header using the Bearer scheme. \n\n Enter 'Bearer' [space] and then your token in the text input below.\n\nExample: \"Bearer 1safsfsdfdfd\""

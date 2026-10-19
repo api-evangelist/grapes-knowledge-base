@@ -1,0 +1,379 @@
+openapi: 3.2.0
+info:
+  title: Grapes Users Controllers API
+  version: v1
+security:
+- Bearer: []
+tags:
+- name: UsersControllers
+paths:
+  /api/{version}/organizations/{orgId}/users:
+    get:
+      tags:
+      - UsersControllers
+      operationId: GetUsers
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: searchQuery
+        in: query
+        schema:
+          type: string
+      - name: Skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+      - name: Take
+        in: query
+        schema:
+          type: integer
+          format: int32
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UserDtoListItemResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDtoListItemResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UserDtoListItemResponse'
+      summary: Get users
+      x-summary-source: derived
+  /api/{version}/organizations/{orgId}/users/{id}:
+    get:
+      tags:
+      - UsersControllers
+      operationId: GetUserById
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UserDtoItemResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDtoItemResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UserDtoItemResponse'
+        '404':
+          description: User not found
+      summary: Get user by id
+      x-summary-source: derived
+    put:
+      tags:
+      - UsersControllers
+      operationId: UpdateUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UserDtoItemResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDtoItemResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UserDtoItemResponse'
+        '400':
+          description: Validation failed
+        '404':
+          description: User not found
+      summary: Update user
+      x-summary-source: derived
+  /api/{version}/organizations/{orgId}/users/{id}/privileges:
+    get:
+      tags:
+      - UsersControllers
+      operationId: GetUserPrivileges
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UserPrivilegesDtoItemResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserPrivilegesDtoItemResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UserPrivilegesDtoItemResponse'
+        '404':
+          description: User not found
+      summary: Get user privileges
+      x-summary-source: derived
+    post:
+      tags:
+      - UsersControllers
+      operationId: UpdateUserPrevileges
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserPrivilegesRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserPrivilegesRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserPrivilegesRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/IActionResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IActionResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/IActionResult'
+        '400':
+          description: Validation failed
+        '404':
+          description: User not found
+      summary: Update user previleges
+      x-summary-source: derived
+components:
+  schemas:
+    UserDtoItemResponse:
+      type: object
+      properties:
+        item:
+          $ref: '#/components/schemas/UserDto'
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/HateoasLink'
+      additionalProperties: false
+    UserDto:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        login:
+          type:
+          - string
+          - 'null'
+        email:
+          type:
+          - string
+          - 'null'
+        firstName:
+          type:
+          - string
+          - 'null'
+        lastName:
+          type:
+          - string
+          - 'null'
+        favoriteLanguage:
+          type:
+          - string
+          - 'null'
+        defaultOrganizationId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    UserPrivilegesDto:
+      type: object
+      properties:
+        defaultPrivileges:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PrivilegeDto'
+      additionalProperties: false
+    UserPrivilegesDtoItemResponse:
+      type: object
+      properties:
+        item:
+          $ref: '#/components/schemas/UserPrivilegesDto'
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/HateoasLink'
+      additionalProperties: false
+    IActionResult:
+      type: object
+      additionalProperties: false
+    PermissionTypes:
+      enum:
+      - Role
+      - Right
+      type: string
+    HateoasLink:
+      type: object
+      properties:
+        relation:
+          type:
+          - string
+          - 'null'
+        uri:
+          type:
+          - string
+          - 'null'
+        method:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    UpdateUserRequest:
+      type: object
+      properties:
+        firstName:
+          type:
+          - string
+          - 'null'
+        lastName:
+          type:
+          - string
+          - 'null'
+        favoriteLanguage:
+          type:
+          - string
+          - 'null'
+        defaultOrganizationId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    PrivilegeDto:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        type:
+          $ref: '#/components/schemas/PermissionTypes'
+      additionalProperties: false
+    UpdateUserPrivilegesRequest:
+      type: object
+      properties:
+        defaultPrivileges:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PrivilegeDto'
+      additionalProperties: false
+    UserDtoListItemResponse:
+      type: object
+      properties:
+        items:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/UserDtoItemResponse'
+        totalCount:
+          type: integer
+          format: int32
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: oauth2
+      description: "JWT Authorization header using the Bearer scheme. \n\n Enter 'Bearer' [space] and then your token in the text input below.\n\nExample: \"Bearer 1safsfsdfdfd\""

@@ -1,24 +1,49 @@
 {
   "provider": "grapes-knowledge-base",
   "sources": [
-    "_original/grapes-knowledge-base-openapi.yml"
+    "_original/grapes-knowledge-base-openapi.json"
   ],
   "outputs": [
-    "grapes-knowledge-base-agents-api-openapi.yml",
+    "grapes-knowledge-base-agentpools-api-openapi.yml",
+    "grapes-knowledge-base-communicationhub-api-openapi.yml",
+    "grapes-knowledge-base-databases-api-openapi.yml",
     "grapes-knowledge-base-datasets-api-openapi.yml",
-    "grapes-knowledge-base-projects-api-openapi.yml"
+    "grapes-knowledge-base-environments-api-openapi.yml",
+    "grapes-knowledge-base-grapes-api-openapi.yml",
+    "grapes-knowledge-base-infrastructures-api-openapi.yml",
+    "grapes-knowledge-base-notifications-api-openapi.yml",
+    "grapes-knowledge-base-organizations-api-openapi.yml",
+    "grapes-knowledge-base-personalaccesstokens-api-openapi.yml",
+    "grapes-knowledge-base-projects-api-openapi.yml",
+    "grapes-knowledge-base-resource-api-openapi.yml",
+    "grapes-knowledge-base-root-api-openapi.yml",
+    "grapes-knowledge-base-sensitivefields-api-openapi.yml",
+    "grapes-knowledge-base-tasks-api-openapi.yml",
+    "grapes-knowledge-base-userscontrollers-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
   "notes": [
     "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
-    "grapes-knowledge-base-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "apis.yml register: already-registered"
+    "grapes-knowledge-base-openapi.json: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "grapes-knowledge-base-openapi.json: declared missing tag: AgentPools",
+    "grapes-knowledge-base-openapi.json: declared missing tag: CommunicationHub",
+    "grapes-knowledge-base-openapi.json: declared missing tag: Databases",
+    "grapes-knowledge-base-openapi.json: declared missing tag: Datasets",
+    "grapes-knowledge-base-openapi.json: declared missing tag: Environments",
+    "grapes-knowledge-base-openapi.json: declared missing tag: Grapes",
+    "grapes-knowledge-base-openapi.json: declared missing tag: Infrastructures",
+    "grapes-knowledge-base-openapi.json: declared missing tag: Notifications",
+    "grapes-knowledge-base-openapi.json: declared missing tag: Organizations",
+    "grapes-knowledge-base-openapi.json: declared missing tag: PersonalAccessTokens",
+    "grapes-knowledge-base-openapi.json: declared missing tag: Projects",
+    "grapes-knowledge-base-openapi.json: declared missing tag: Resource",
+    "grapes-knowledge-base-openapi.json: declared missing tag: Root",
+    "grapes-knowledge-base-openapi.json: declared missing tag: SensitiveFields",
+    "grapes-knowledge-base-openapi.json: declared missing tag: Tasks",
+    "grapes-knowledge-base-openapi.json: declared missing tag: UsersControllers",
+    "apis.yml register: written (+14 apis, 16 total)"
   ],
-  "skipped": [
-    "grapes-knowledge-base-agents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "grapes-knowledge-base-datasets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "grapes-knowledge-base-projects-api-openapi.yml: previously refined output, superseded by openapi/_original/"
-  ]
+  "skipped": []
 }

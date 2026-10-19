@@ -1,0 +1,326 @@
+openapi: 3.2.0
+info:
+  title: Grapes Infrastructures API
+  version: v1
+security:
+- Bearer: []
+tags:
+- name: Infrastructures
+paths:
+  /api/{version}/organizations/{orgId}/infrastructures:
+    get:
+      tags:
+      - Infrastructures
+      operationId: GetInfrastructures
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: searchQuery
+        in: query
+        schema:
+          type: string
+      - name: Skip
+        in: query
+        schema:
+          type: integer
+          format: int32
+      - name: Take
+        in: query
+        schema:
+          type: integer
+          format: int32
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/InfrastructureDtoListItemResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfrastructureDtoListItemResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/InfrastructureDtoListItemResponse'
+      summary: Get infrastructures
+      x-summary-source: derived
+    post:
+      tags:
+      - Infrastructures
+      operationId: CreateInfrastructure
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateInfrastructureRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CreateInfrastructureRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateInfrastructureRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/InfrastructureDtoItemResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfrastructureDtoItemResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/InfrastructureDtoItemResponse'
+        '400':
+          description: Validation failed
+      summary: Create infrastructure
+      x-summary-source: derived
+  /api/{version}/organizations/{orgId}/infrastructures/{id}:
+    get:
+      tags:
+      - Infrastructures
+      operationId: GetInfrastructureById
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: includeConnectionString
+        in: query
+        schema:
+          type: boolean
+          default: false
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/InfrastructureDtoItemResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfrastructureDtoItemResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/InfrastructureDtoItemResponse'
+        '404':
+          description: Infrastructure not found
+      summary: Get infrastructure by id
+      x-summary-source: derived
+    put:
+      tags:
+      - Infrastructures
+      operationId: UpdateInfrastructure
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateInfrastructureRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UpdateInfrastructureRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateInfrastructureRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/InfrastructureDtoItemResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfrastructureDtoItemResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/InfrastructureDtoItemResponse'
+        '400':
+          description: Validation failed
+        '404':
+          description: Infrastructure not found
+      summary: Update infrastructure
+      x-summary-source: derived
+    delete:
+      tags:
+      - Infrastructures
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Validation failed
+        '404':
+          description: Infrastructure not found
+      summary: Delete api by version organizations by org id infrastructures by id
+      x-summary-source: derived
+      operationId: deleteApiByVersionOrganizationsByOrgIdInfrastructuresById
+      x-operation-id-source: derived
+components:
+  schemas:
+    InfrastructureDtoItemResponse:
+      type: object
+      properties:
+        item:
+          $ref: '#/components/schemas/InfrastructureDto'
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/HateoasLink'
+      additionalProperties: false
+    CreateInfrastructureRequest:
+      type: object
+      properties:
+        connectionString:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        databaseType:
+          $ref: '#/components/schemas/DataBaseTypes'
+        readOnly:
+          type: boolean
+      additionalProperties: false
+    UpdateInfrastructureRequest:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        connectionString:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        databaseType:
+          $ref: '#/components/schemas/DataBaseTypes'
+        readOnly:
+          type: boolean
+      additionalProperties: false
+    InfrastructureDtoListItemResponse:
+      type: object
+      properties:
+        items:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/InfrastructureDtoItemResponse'
+        totalCount:
+          type: integer
+          format: int32
+      additionalProperties: false
+    DataBaseTypes:
+      enum:
+      - SqlServer
+      - MySql
+      type: string
+    HateoasLink:
+      type: object
+      properties:
+        relation:
+          type:
+          - string
+          - 'null'
+        uri:
+          type:
+          - string
+          - 'null'
+        method:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    InfrastructureDto:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        connectionString:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        databaseType:
+          $ref: '#/components/schemas/DataBaseTypes'
+        readOnly:
+          type: boolean
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: oauth2
+      description: "JWT Authorization header using the Bearer scheme. \n\n Enter 'Bearer' [space] and then your token in the text input below.\n\nExample: \"Bearer 1safsfsdfdfd\""

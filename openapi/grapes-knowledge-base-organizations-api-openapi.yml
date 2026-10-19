@@ -1,0 +1,311 @@
+openapi: 3.2.0
+info:
+  title: Grapes Organizations API
+  version: v1
+security:
+- Bearer: []
+tags:
+- name: Organizations
+paths:
+  /api/{version}/organizations:
+    get:
+      tags:
+      - Organizations
+      operationId: GetOrganizations
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/OrganizationDtoListItemResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationDtoListItemResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationDtoListItemResponse'
+      summary: Get organizations
+      x-summary-source: derived
+    post:
+      tags:
+      - Organizations
+      operationId: CreateOrganization
+      parameters:
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrganizationRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrganizationRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateOrganizationRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/OrganizationDtoItemResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationDtoItemResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationDtoItemResponse'
+        '400':
+          description: Validation failed
+      summary: Create organization
+      x-summary-source: derived
+  /api/{version}/organizations/{orgId}:
+    get:
+      tags:
+      - Organizations
+      operationId: GetOrganizationById
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/OrganizationDtoItemResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationDtoItemResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationDtoItemResponse'
+        '404':
+          description: Organization not found
+      summary: Get organization by id
+      x-summary-source: derived
+    put:
+      tags:
+      - Organizations
+      operationId: UpdateOrganization
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateOrganizationRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UpdateOrganizationRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateOrganizationRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/OrganizationDtoItemResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationDtoItemResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationDtoItemResponse'
+        '400':
+          description: Validation failed
+        '404':
+          description: Organization not found
+      summary: Update organization
+      x-summary-source: derived
+  /api/{version}/organizations/{orgId}/join:
+    post:
+      tags:
+      - Organizations
+      operationId: JoinOrganization
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JoinOrganizationRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/JoinOrganizationRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/JoinOrganizationRequest'
+      responses:
+        '202':
+          description: Accepted
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ActionResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActionResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ActionResult'
+        '400':
+          description: Validation failed
+        '404':
+          description: Organization not found
+      summary: Join organization
+      x-summary-source: derived
+components:
+  schemas:
+    ActionResult:
+      type: object
+      additionalProperties: false
+    UpdateOrganizationRequest:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    CreateOrganizationRequest:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        createDefaultResource:
+          type:
+          - boolean
+          - 'null'
+      additionalProperties: false
+    OrganizationDtoItemResponse:
+      type: object
+      properties:
+        item:
+          $ref: '#/components/schemas/OrganizationDto'
+        links:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/HateoasLink'
+      additionalProperties: false
+    HateoasLink:
+      type: object
+      properties:
+        relation:
+          type:
+          - string
+          - 'null'
+        uri:
+          type:
+          - string
+          - 'null'
+        method:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    OrganizationDto:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    JoinOrganizationRequest:
+      type: object
+      properties:
+        email:
+          type:
+          - string
+          - 'null'
+        firstName:
+          type:
+          - string
+          - 'null'
+        lastName:
+          type:
+          - string
+          - 'null'
+        defaultRole:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    OrganizationDtoListItemResponse:
+      type: object
+      properties:
+        items:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/OrganizationDtoItemResponse'
+        totalCount:
+          type: integer
+          format: int32
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: oauth2
+      description: "JWT Authorization header using the Bearer scheme. \n\n Enter 'Bearer' [space] and then your token in the text input below.\n\nExample: \"Bearer 1safsfsdfdfd\""
