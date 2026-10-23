@@ -472,3 +472,9 @@ components:
     Bearer:
       type: oauth2
       description: "JWT Authorization header using the Bearer scheme. \n\n Enter 'Bearer' [space] and then your token in the text input below.\n\nExample: \"Bearer 1safsfsdfdfd\""
+x-provenance:
+  method: harvested
+  publisher: Grapes Knowledge Base
+  source: https://api.data-grapes.com/swagger/v1/swagger.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
