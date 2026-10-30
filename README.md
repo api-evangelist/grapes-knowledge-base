@@ -1,4 +1,4 @@
-# Grapes Knowledge Base (grapes-knowledge-base)
+# Grapes Knowledge Base
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,60 +66,137 @@
 
 Grapes is a knowledge management platform with administrative, configuration, and project management capabilities. The Grapes API allows automation of recurring operations including project administration, agent configuration, and dataset import/export. Documentation is available in English and French.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/grapes-knowledge-base/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/grapes-knowledge-base/refs/heads/main/apis.yml)
+**Areas:** Knowledge Management · Knowledge Base · Data Management · Automation · HATEOAS
 
-## Scope
+## Grapes Knowledge Base on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Grapes Knowledge Base is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/grapes-knowledge-base/](https://apis.io/providers/grapes-knowledge-base/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (3)
 
-- Knowledge Management
-- Knowledge Base
-- Data Management
-- Automation
-- HATEOAS
+- [Grapes Knowledge Base Agents API](https://apis.io/apis/grapes-knowledge-base/grapes-knowledge-base-agents-api/) — Configure Grapes agents
+- [Grapes Knowledge Base Datasets API](https://apis.io/apis/grapes-knowledge-base/grapes-knowledge-base-datasets-api/) — Import and export datasets
+- [Grapes Knowledge Base Projects API](https://apis.io/apis/grapes-knowledge-base/grapes-knowledge-base-projects-api/) — Create and customize Grapes projects
 
-## Timestamps
+### Published properties
 
-- **Created:** 2025-02-24
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Grapes API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The Grapes API allows you to automate recurring operations on the Grapes knowledge management platform, including project administration, agent configuration, and dataset import/export. The API follows HATEOAS principles for link management between resources.
+- [Grapes Knowledge Base Agentic Access](https://apis.io/agentic-access/grapes-knowledge-base/grapes-knowledge-base-agentic-access/)
 
-- **Human URL:** [https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/](https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/)
+#### JSON Schema (1)
 
-#### Tags
+The data models the API reads and writes.
 
-- Knowledge Management
-- Automation
-- HATEOAS
+- [Grapes Project](https://apis.io/schemas/grapes-knowledge-base/grapes-knowledge-base-project/)
 
-#### Properties
+#### JSON-LD (1)
 
-- [Documentation](https://docs.data-grapes.com/en/docs/developer-docs/api/api-reference/)
-- [Security](https://docs.data-grapes.com/en/docs/developer-docs/api/api-security/)
-- [OpenAPI](openapi/grapes-knowledge-base-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/grapes-knowledge-base.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/grapes-knowledge-base.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Linked-data contexts for the provider's vocabulary.
 
-## Common Properties
+- [Grapes Knowledge Base Context](https://apis.io/jsonld/grapes-knowledge-base/grapes-knowledge-base-context/)
 
+#### Collections (4)
+
+Postman and Open Collection request collections.
+
+- [Grapes Knowledge Base API](https://apis.io/collections/grapes-knowledge-base/open-grapes-knowledge-base/)
+- [Grapes Knowledge Base Agents API](https://apis.io/collections/grapes-knowledge-base/open-grapes-knowledge-base-agents-api/)
+- [Grapes Knowledge Base Agents Datasets API](https://apis.io/collections/grapes-knowledge-base/open-grapes-knowledge-base-datasets-api/)
+- [Grapes Knowledge Base Agents Projects API](https://apis.io/collections/grapes-knowledge-base/open-grapes-knowledge-base-projects-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Grapes Knowledge Base — jsonschema rules](https://apis.io/rules/grapes-knowledge-base/grapes-knowledge-base-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Grapes Knowledge Base Authentication](https://apis.io/security/grapes-knowledge-base/grapes-knowledge-base-authentication/)
+- [Grapes Knowledge Base Domain Security](https://apis.io/security/grapes-knowledge-base/grapes-knowledge-base-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Grapes Knowledge Base Plans Pricing](https://apis.io/plans/grapes-knowledge-base/grapes-knowledge-base-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Grapes Knowledge Base Rate Limits](https://apis.io/rate-limits/grapes-knowledge-base/grapes-knowledge-base-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Grapes Knowledge Base Finops](https://apis.io/finops/grapes-knowledge-base/grapes-knowledge-base-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://data-grapes.com/)
 - [Documentation](https://docs.data-grapes.com/en/)
-- [Developer Docs](https://docs.data-grapes.com/en/docs/developer-docs/)
-- [User Guide](https://docs.data-grapes.com/en/docs/user-guide/)
-- [OpenAPI](openapi/grapes-knowledge-base-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [JSON Schema](json-schema/grapes-knowledge-base-project-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [J S O N L D Context](json-ld/grapes-knowledge-base-context.jsonld)
-- [Rules](grapes-knowledge-base-rules.yml)
+- [Blog](https://data-grapes.com/articles/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 27.8** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 57.1 |
+| Contract quality | 50.7 |
+| Contract governance | 9.8 |
+| Operational transparency | 18.4 |
+| Developer ergonomics | 23.8 |
+| Access clarity | 7.9 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/grapes-knowledge-base/](https://apis.io/providers/grapes-knowledge-base/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Grapes Knowledge Base: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/grapes-knowledge-base/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
